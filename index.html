@@ -2,128 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Live Projects July</title>
+  <title>Live Projects – Teenlancers</title>
   <style>
-    /* Animated Gradient Background */
+    /* Smooth gradient background animation */
     body {
-      font-family: 'Arial', sans-serif;
-      padding: 20px;
       margin: 0;
-      background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fbc2eb, #a6c1ee);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+      background-size: 800% 800%;
+      animation: gradientMove 20s ease infinite;
+      padding: 30px;
       overflow-x: hidden;
     }
 
-    @keyframes gradientBG {
+    @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Floating pastel circles */
-    .bubble {
-      position: absolute;
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      animation: float 20s infinite ease-in-out;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.6;
-      }
-      50% {
-        transform: translateY(-100px) scale(1.2);
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.6;
-      }
-    }
-
     h2 {
       text-align: center;
-      font-size: 32px;
-      color: #333;
-      animation: shimmer 3s infinite linear;
-      background: linear-gradient(90deg, #ff8a00, #e52e71, #ff8a00);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 20px;
+      animation: popIn 1.2s ease-out;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     }
 
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+    @keyframes popIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 30px;
-      background-color: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      z-index: 2;
-      position: relative;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     th, td {
-      border: 1px solid #eee;
-      padding: 14px;
+      padding: 14px 16px;
+      border: 1px solid #eaeaea;
       text-align: left;
-      z-index: 2;
     }
 
     th {
       background-color: #f0f0f0;
-    }
-
-    tr {
-      animation: fadeInRow 1s ease forwards;
-      opacity: 0;
+      font-weight: bold;
     }
 
     tr:hover {
-      background-color: #f0f8ff;
+      background-color: #f9f9ff;
       transition: background-color 0.3s;
     }
 
-    @keyframes fadeInRow {
-      to {
-        opacity: 1;
-      }
-    }
-
     td.highlight {
-      font-weight: bold;
       background-color: #c6efce;
+      font-weight: bold;
     }
 
     a {
-      color: #007BFF;
+      color: #007bff;
       text-decoration: underline;
     }
 
-    /* Bubble styles */
-    .bubble:nth-child(1) { width: 100px; height: 100px; left: 10%; top: 30%; animation-delay: 0s; }
-    .bubble:nth-child(2) { width: 80px; height: 80px; left: 80%; top: 50%; animation-delay: 5s; }
-    .bubble:nth-child(3) { width: 60px; height: 60px; left: 50%; top: 70%; animation-delay: 2s; }
+    /* Optional animated background elements */
+    .bubble {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: floatBubble 15s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatBubble {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-100px) scale(1.2);
+        opacity: 0.15;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    .bubble1 { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+    .bubble2 { width: 100px; height: 100px; top: 60%; left: 80%; animation-delay: 3s; }
+    .bubble3 { width: 60px; height: 60px; top: 40%; left: 50%; animation-delay: 6s; }
 
   </style>
 </head>
 <body>
-  <!-- Floating Bubbles Background -->
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
 
-  <h2>🌟 Live Projects for Teenlancers – July</h2>
+  <!-- Soft animated background elements -->
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+
+  <h2>🚀 Live Projects for Teenlancers – July</h2>
 
   <table id="sheetTable">
     <thead></thead>
@@ -134,21 +131,13 @@
     const apiKey = 'AIzaSyC5LS4PN9FT7xYNvhVDM4wmZsRE8bx5VCY';
     const sheetId = '1HO0lmj349tG-iFmiXvJpRB9ELNfKpwE_yHkJ0MnjZ1s';
     const range = 'Live Projects';
-
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
     const highlightWords = [
-      'WITHOUT KYC',
-      'Project Name',
-      'Project Link',
-      'AMOUNT',
-      'TUTORIAL',
-      'TOTAL LIVE=',
-      'KYC and account opening',
-      'Funngro Special Projects',
-      'Shopping And Discount (BEST DEALS)',
-      'Chat Bot',
-      'TOTAL AMT',
+      'WITHOUT KYC', 'Project Name', 'Project Link', 'AMOUNT',
+      'TUTORIAL', 'TOTAL LIVE=', 'KYC and account opening',
+      'Funngro Special Projects', 'Shopping And Discount (BEST DEALS)',
+      'Chat Bot', 'TOTAL AMT'
     ];
 
     fetch(url)
@@ -159,7 +148,6 @@
         const thead = table.querySelector('thead');
         const tbody = table.querySelector('tbody');
 
-        // Insert header
         if (rows.length > 0) {
           const headerRow = document.createElement('tr');
           rows[0].forEach(headerText => {
@@ -170,10 +158,10 @@
           thead.appendChild(headerRow);
         }
 
-        // Insert rows
         for (let i = 1; i < rows.length; i++) {
           const tr = document.createElement('tr');
-          tr.style.animationDelay = `${i * 0.1}s`; // stagger row animation
+          tr.style.animation = `fadeIn 0.6s ease ${i * 0.1}s forwards`;
+          tr.style.opacity = 0;
 
           rows[i].forEach(cell => {
             const td = document.createElement('td');
@@ -199,4 +187,8 @@
         }
       })
       .catch(error => {
-        document.body.innerHTML = '<p>Error loading data: ' + error
+        document.body.innerHTML = '<p style="color: white;">Error loading data: ' + error + '</p>';
+      });
+  </script>
+</body>
+</html>
