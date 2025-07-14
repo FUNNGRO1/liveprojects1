@@ -4,41 +4,89 @@
   <meta charset="UTF-8" />
   <title>Live Projects July</title>
   <style>
+    /* Animated Gradient Background */
     body {
       font-family: 'Arial', sans-serif;
       padding: 20px;
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      animation: fadeIn 1s ease-in-out;
+      margin: 0;
+      background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fbc2eb, #a6c1ee);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating pastel circles */
+    .bubble {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: float 20s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-100px) scale(1.2);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
     }
 
     h2 {
-      margin-bottom: 10px;
       text-align: center;
       font-size: 32px;
       color: #333;
-      animation: slideIn 1.2s ease;
+      animation: shimmer 3s infinite linear;
+      background: linear-gradient(90deg, #ff8a00, #e52e71, #ff8a00);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-      background-color: white;
-      border-radius: 10px;
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      animation: zoomIn 0.8s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      position: relative;
     }
 
     th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
+      border: 1px solid #eee;
+      padding: 14px;
       text-align: left;
+      z-index: 2;
     }
 
     th {
-      background-color: #f5f5f5;
-      color: #333;
+      background-color: #f0f0f0;
+    }
+
+    tr {
+      animation: fadeInRow 1s ease forwards;
+      opacity: 0;
     }
 
     tr:hover {
@@ -46,36 +94,37 @@
       transition: background-color 0.3s;
     }
 
-    a {
-      color: #007BFF;
-      text-decoration: underline;
+    @keyframes fadeInRow {
+      to {
+        opacity: 1;
+      }
     }
 
-    /* Highlighted words */
     td.highlight {
       font-weight: bold;
       background-color: #c6efce;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    a {
+      color: #007BFF;
+      text-decoration: underline;
     }
 
-    @keyframes slideIn {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+    /* Bubble styles */
+    .bubble:nth-child(1) { width: 100px; height: 100px; left: 10%; top: 30%; animation-delay: 0s; }
+    .bubble:nth-child(2) { width: 80px; height: 80px; left: 80%; top: 50%; animation-delay: 5s; }
+    .bubble:nth-child(3) { width: 60px; height: 60px; left: 50%; top: 70%; animation-delay: 2s; }
 
-    @keyframes zoomIn {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
   </style>
 </head>
 <body>
-  <h2>🚀 Live Projects for Teenlancers – July</h2>
+  <!-- Floating Bubbles Background -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <h2>🌟 Live Projects for Teenlancers – July</h2>
+
   <table id="sheetTable">
     <thead></thead>
     <tbody></tbody>
@@ -124,10 +173,11 @@
         // Insert rows
         for (let i = 1; i < rows.length; i++) {
           const tr = document.createElement('tr');
+          tr.style.animationDelay = `${i * 0.1}s`; // stagger row animation
+
           rows[i].forEach(cell => {
             const td = document.createElement('td');
 
-            // Clickable links
             if (cell.startsWith('http') || cell.startsWith('www')) {
               const a = document.createElement('a');
               a.href = cell.startsWith('http') ? cell : 'https://' + cell;
@@ -138,19 +188,15 @@
               td.textContent = cell;
             }
 
-            // Highlight specific keywords
             if (highlightWords.includes(cell)) {
               td.classList.add('highlight');
             }
 
             tr.appendChild(td);
           });
+
           tbody.appendChild(tr);
         }
       })
       .catch(error => {
-        document.body.innerHTML = '<p>Error loading data: ' + error + '</p>';
-      });
-  </script>
-</body>
-</html>
+        document.body.innerHTML = '<p>Error loading data: ' + error
