@@ -4,6 +4,22 @@
   <meta charset="UTF-8">
   <title>Teen Projects Dashboard – Earn & Learn</title>
   <style>
+    :root {
+      --bg-gradient: linear-gradient(45deg, #ffdee9, #b5fffc);
+      --text-color: #333;
+      --table-bg: #fff;
+      --highlight: #d4fcd3;
+      --button-bg: #ff5e7e;
+    }
+
+    body.dark {
+      --bg-gradient: linear-gradient(45deg, #1e1e1e, #2a2a2a);
+      --text-color: #f1f1f1;
+      --table-bg: #333;
+      --highlight: #444d3c;
+      --button-bg: #ffa3b3;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -11,10 +27,11 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(45deg, #ffdee9, #b5fffc);
+      background: var(--bg-gradient);
       background-size: 300% 300%;
       animation: bgAnimate 20s ease infinite;
-      overflow-x: hidden;
+      color: var(--text-color);
+      transition: all 0.4s ease;
     }
 
     @keyframes bgAnimate {
@@ -25,13 +42,23 @@
 
     header {
       text-align: center;
-      padding: 40px 20px 10px;
+      padding: 30px 20px 10px;
+    }
+
+    header img {
+      width: 160px;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease;
     }
 
     header h1 {
       font-size: 40px;
-      color: #333;
       animation: dropIn 1s ease-out;
+    }
+
+    .subtext {
+      font-size: 20px;
+      animation: fadeIn 2s ease;
     }
 
     @keyframes dropIn {
@@ -39,10 +66,9 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    .subtext {
-      font-size: 20px;
-      color: #555;
-      animation: fadeIn 2s ease;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .animation-area {
@@ -66,7 +92,7 @@
       width: 90%;
       margin: 40px auto;
       border-collapse: collapse;
-      background: #fff;
+      background: var(--table-bg);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -89,12 +115,12 @@
     }
 
     td.highlight {
-      background-color: #d4fcd3;
+      background-color: var(--highlight);
       font-weight: bold;
     }
 
     tr:hover {
-      background-color: #f9f9ff;
+      background-color: #f3f3f3;
     }
 
     a {
@@ -104,28 +130,41 @@
 
     .cta {
       text-align: center;
-      margin: 40px;
+      margin: 30px 10px;
     }
 
     .cta button {
-      background-color: #ff5e7e;
+      background-color: var(--button-bg);
       border: none;
       color: white;
-      padding: 14px 28px;
-      font-size: 18px;
+      padding: 12px 24px;
+      font-size: 16px;
       border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s ease;
+      margin: 10px;
     }
 
     .cta button:hover {
-      background-color: #ff3c65;
+      opacity: 0.9;
+    }
+
+    .toggle-mode {
+      position: fixed;
+      top: 20px;
+      right: 20px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Dark Mode Toggle Button -->
+  <div class="toggle-mode">
+    <button onclick="toggleMode()">🌓 Toggle Mode</button>
+  </div>
+
   <header>
+    <img src="https://i.imgur.com/ojF4Fg5.png" alt="Funngro Logo">
     <h1>💡 Earn While You Learn!</h1>
     <p class="subtext">Teen Projects | Real Money | Real Skills</p>
   </header>
@@ -201,16 +240,3 @@
               tr.appendChild(td);
             });
             tbody.appendChild(tr);
-          }
-        })
-        .catch(error => {
-          tbody.innerHTML = `<tr><td colspan="10">Error loading data: ${error}</td></tr>`;
-        });
-    }
-
-    // Load once on page load
-    loadProjects();
-  </script>
-
-</body>
-</html>
