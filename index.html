@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Teen Projects Dashboard – Earn & Learn</title>
   <style>
     :root {
-      --bg-gradient: linear-gradient(45deg, #ffdee9, #b5fffc);
-      --text-color: #333;
-      --table-bg: #fff;
+      --bg: linear-gradient(45deg, #ffdee9, #b5fffc);
+      --text: #333;
+      --card: #ffffff;
+      --button: #ff5e7e;
+      --button-hover: #ff3c65;
       --highlight: #d4fcd3;
-      --button-bg: #ff5e7e;
     }
 
     body.dark {
-      --bg-gradient: linear-gradient(45deg, #1e1e1e, #2a2a2a);
-      --text-color: #f1f1f1;
-      --table-bg: #333;
-      --highlight: #444d3c;
-      --button-bg: #ffa3b3;
+      --bg: linear-gradient(45deg, #1e1e1e, #2a2a2a);
+      --text: #f1f1f1;
+      --card: #2c2c2c;
+      --button: #ffa3b3;
+      --button-hover: #ff7f94;
+      --highlight: #3b513b;
     }
 
     * {
@@ -27,11 +29,11 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-gradient);
-      background-size: 300% 300%;
+      background: var(--bg);
+      color: var(--text);
       animation: bgAnimate 20s ease infinite;
-      color: var(--text-color);
-      transition: all 0.4s ease;
+      background-size: 300% 300%;
+      transition: 0.4s ease;
     }
 
     @keyframes bgAnimate {
@@ -40,15 +42,28 @@
       100% { background-position: 0% 50%; }
     }
 
-    header {
-      text-align: center;
-      padding: 30px 20px 10px;
+    .toggle-mode {
+      position: fixed;
+      top: 10px;
+      right: 20px;
     }
 
-    header img {
-      width: 160px;
-      margin-bottom: 10px;
-      animation: fadeIn 2s ease;
+    .toggle-mode button {
+      background: var(--button);
+      border: none;
+      padding: 10px 16px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .toggle-mode button:hover {
+      background: var(--button-hover);
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 10px;
     }
 
     header h1 {
@@ -56,19 +71,14 @@
       animation: dropIn 1s ease-out;
     }
 
-    .subtext {
-      font-size: 20px;
-      animation: fadeIn 2s ease;
-    }
-
     @keyframes dropIn {
       0% { transform: translateY(-50px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .subtext {
+      font-size: 20px;
+      animation: fadeIn 2s ease;
     }
 
     .animation-area {
@@ -92,7 +102,7 @@
       width: 90%;
       margin: 40px auto;
       border-collapse: collapse;
-      background: var(--table-bg);
+      background: var(--card);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -106,7 +116,7 @@
 
     th, td {
       padding: 12px 15px;
-      border: 1px solid #eee;
+      border: 1px solid #ddd;
       text-align: left;
     }
 
@@ -120,7 +130,7 @@
     }
 
     tr:hover {
-      background-color: #f3f3f3;
+      background-color: #f9f9ff;
     }
 
     a {
@@ -130,41 +140,33 @@
 
     .cta {
       text-align: center;
-      margin: 30px 10px;
+      margin: 40px;
     }
 
     .cta button {
-      background-color: var(--button-bg);
+      background-color: var(--button);
       border: none;
       color: white;
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 14px 28px;
+      font-size: 18px;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s ease;
-      margin: 10px;
+      transition: background 0.3s ease;
     }
 
     .cta button:hover {
-      opacity: 0.9;
-    }
-
-    .toggle-mode {
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      background-color: var(--button-hover);
     }
   </style>
 </head>
 <body>
 
-  <!-- Dark Mode Toggle Button -->
+  <!-- Toggle Button -->
   <div class="toggle-mode">
     <button onclick="toggleMode()">🌓 Toggle Mode</button>
   </div>
 
   <header>
-    <img src="https://i.imgur.com/ojF4Fg5.png" alt="Funngro Logo">
     <h1>💡 Earn While You Learn!</h1>
     <p class="subtext">Teen Projects | Real Money | Real Skills</p>
   </header>
@@ -240,3 +242,20 @@
               tr.appendChild(td);
             });
             tbody.appendChild(tr);
+          }
+        })
+        .catch(error => {
+          tbody.innerHTML = `<tr><td colspan="10">Error loading data: ${error}</td></tr>`;
+        });
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Initial load
+    loadProjects();
+  </script>
+
+</body>
+</html>
